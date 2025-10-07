@@ -1,6 +1,27 @@
-@CrudAPI_HostAddress = http://localhost:5227
+@CrudAPI_HostAddress = https://localhost:7272
+GET {{CrudAPI_HostAddress}}/api/pessoas
 
-GET {{CrudAPI_HostAddress}}/weatherforecast/
-Accept: application/json
+###
+
+POST {{CrudAPI_HostAddress}}/api/pessoas
+Content-Type: application/json
+
+{
+  //Pessoa
+}
+
+###
+
+@id=0
+DELETE {{CrudAPI_HostAddress}}/api/pessoas/{{id}}
+
+###
+
+PUT {{CrudAPI_HostAddress}}/api/pessoas/{{id}}
+Content-Type: application/json
+
+{
+  //Pessoa
+}
 
 ###
