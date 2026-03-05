@@ -1,0 +1,25 @@
+# Git
+.git
+.gitignore
+
+# Node
+**/node_modules
+**/npm-debug.log
+**/yarn-error.log
+
+# Frontend build outputs
+frontend/build
+frontend/dist
+
+# .NET build outputs
+**/bin
+**/obj
+
+# VS/VS Code
+.vscode
+.vs
+**/*.user
+
+# OS
+.DS_Store
+Thumbs.db
