@@ -29,12 +29,16 @@ builder.Services.AddCors(options =>
         var origins = originsRaw
             .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
             .Where(o => !string.IsNullOrWhiteSpace(o))
+            .Select(o => o.TrimEnd('/'))
             .ToArray();
 
-        policy.WithOrigins(origins)
-              .AllowAnyHeader()
-              .AllowAnyMethod()
-              .AllowCredentials();
+        if (origins.Any(o => o == "*"))
+            policy.AllowAnyOrigin();
+        else
+            policy.WithOrigins(origins);
+
+        policy.AllowAnyHeader()
+              .AllowAnyMethod();
     });
 });
 
@@ -83,7 +87,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+if (app.Environment.IsDevelopment())
+    app.UseHttpsRedirection();
+
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
